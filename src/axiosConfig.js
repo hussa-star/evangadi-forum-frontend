@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Instance = axios.create({
-  baseURL: "http://localhost:5500/api",
+  baseURL: "https://hussacodes.com/api",
 });
 
 export default Instance;
