@@ -1,0 +1,94 @@
+.container {
+  width: 1250px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+
+.summary {
+  margin-top: 30px;
+}
+
+.summary ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 20px;
+  gap: 10px;
+  font-weight: 550;
+  /* font-size: 20px; */
+}
+
+.title hr {
+  width: 25%;
+  border: 1px solid rgb(233, 50, 4);
+  margin-top: 5px;
+  transition: 1.2s;
+  margin-bottom: 20px;
+}
+
+
+body:has(.summary:hover) .title hr {
+  width: 45%;
+}
+
+
+.title h3 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.post_question {
+  margin-top: 15px;
+  padding: 20px;
+  box-shadow: 3px 5px 5px rgb(201, 199, 199);
+  border-radius: 10px;
+
+}
+
+form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 180px;
+  display: block;
+  background-color: rgb(104, 104, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 17px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(145, 145, 252);
+}
+
+
+label {
+  font-weight: bold;
+  font-size: 25px;
+}
+textarea {
+  padding: 10px;
+  border-radius: 10px;
+  background: white;
+}
+
+@media screen and (max-width: 1300px) {
+  .container {
+    
+    width: 80%;
+  }
+}
+
+

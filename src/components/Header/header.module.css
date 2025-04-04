@@ -1,0 +1,134 @@
+
+.header {
+position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000000; 
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  z-index: 5;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px 5%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.375);
+  flex-wrap: wrap;
+  background-color: white;
+
+}
+
+.header img {
+  width: auto;
+}
+.home{
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar ul li {
+  color: black;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.navbar ul a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.navbar ul li:hover, 
+.navbar ul a:hover {
+  color: #FF8500;
+  cursor: pointer;
+}
+
+/* Button styles */
+.navbar .btn {
+  background-color: #1141df;
+  color: white;
+  border: none;
+  padding: 12px 59px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 100;
+}
+
+.navbar .btn:hover {
+  background-color: #FF8500;
+  color: white;
+}
+
+@media (max-width: 768px) {
+
+  .header {
+    flex-direction: row; 
+    justify-content: space-between;
+    text-align: left;
+  }
+
+
+  .navbar .home {
+    display: none;
+  }
+
+  
+  .header img {
+    width: auto;
+    height: 50%;
+    width: 80%;
+  }
+
+  .navbar .btn {
+    background-color: #1141df;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 100;
+  }
+
+  .navbar .btn:hover {
+    background-color: #FF8500;
+  }
+  .btn{
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .header  {
+    padding: 10px;
+    margin-left: -20px;
+    justify-content: center;
+    /* height: 4vh; */
+  }
+ .header img {
+    margin-left: -15px;
+  }
+ 
+
+  .navbar .btn {
+    padding: 10px 30px;
+    display: block;
+    margin-left: -20px;
+    
+  }
+}

@@ -1,0 +1,51 @@
+/* ----------- Heading Styles ----------- */
+.question_paragraph h1 {
+  font-size: 32px;
+  color: #e33f00;
+  font-weight: bold;
+}
+
+.question_paragraph p {
+  color: #67748e;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.how_it_works {
+  margin: 30px 0;
+  margin-left: 30px;
+  margin-bottom: 40px;
+}
+
+.how_it_works button {
+  background-color: #ff8000;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  text-transform: uppercase;
+}
+
+/* Hover Effect */
+.how_it_works button:hover {
+  background-color: #e67300;
+}
+.evangadi_questiona_answer {
+  padding: 0 30px;
+}
+.evangadi_questiona_answer span {
+  color: #fe8303;
+}
+@media (min-width: 870px) {
+  .question_paragraph p {
+    font-size: 19px;
+  }
+  .evangadi_questiona_answer {
+  padding: 30px 70px 0  30px;
+}
+}

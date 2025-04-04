@@ -1,0 +1,132 @@
+.input_container {
+  margin: 0 auto;
+  border-radius: 15px;
+  height: 500px;
+  background-color: white;
+  max-width: 600px;
+  z-index: 50;
+  /* position: relative; */
+}
+
+.input_form {
+  padding: 0 40px;
+
+  border-radius: 10px;
+}
+
+.input_form h2 {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  font-size: 20px;
+  color: #344767;
+}
+
+.input_form p {
+  padding: 25px 0 21px 30px;
+  color: rgb(103, 116, 142);
+}
+
+.create_account {
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.input_form form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+}
+
+.input_form input {
+  outline: none;
+  padding-left: 10px;
+  font-size: 16px;
+  height: 50px;
+  width: 100%;
+  border: solid 1px rgb(204, 204, 204);
+  border-radius: 5px;
+}
+
+.input_form input:focus {
+  border-bottom: 3px solid #fd7e14;
+  transition: 0.05s;
+}
+
+.login {
+  margin-top: 30px;
+  width: 90%;
+  height: 42px;
+  background: #516cf0;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register_btn {
+  margin-top: -20px;
+}
+.login:hover {
+  background: #4a62db;
+}
+
+form > div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+}
+
+.password_container span {
+  position: absolute;
+  right: 15px;
+}
+
+.password_container svg:hover {
+  color: #ff8000;
+}
+
+.sign_in {
+  color: #da7000;
+  text-decoration: none;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 90%;
+}
+.names input:nth-child(1) {
+  margin-right: 5px;
+}
+.rigister_container .input_form p {
+  padding: 25px 0 5px 0;
+  color: rgb(103, 116, 142);
+}
+.rigister_container .input_form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.rigister_container {
+  height: 600px;
+}
+.bottom_form {
+  margin-top: 30px;
+}
+
+.register_bottom_center {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
