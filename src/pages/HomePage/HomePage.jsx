@@ -1,3 +1,4 @@
+// HomePage.jsx
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import style from "./homePage.module.css";
@@ -10,43 +11,53 @@ const HomePage = () => {
   const [questions, setQuestions] = useState([]);
   const { user } = useContext(AppState);
   const [searchTerm, setSearchTerm] = useState("");
-  const [visibleQuestions, setVisibleQuestions] = useState([]);
-  const [nextIndex, setNextIndex] = useState(6); // Start with the first 6
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const questionsPerPage = 6;
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const response = await axiosConfig.get("/question", {
+    fetchQuestions();
+  }, [currentPage]);
+
+  const fetchQuestions = async () => {
+    try {
+      const response = await axiosConfig.get(
+        `/question?page=${currentPage}&limit=${questionsPerPage}`,
+        {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        });
-        setQuestions(response.data);
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      }
-    };
+        }
+      );
+      setQuestions(response.data.questions);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    }
+  };
 
-    fetchQuestions();
-  }, []);
-
-  useEffect(() => {
-    // Initial display of the first 6 questions
-    setVisibleQuestions(questions.slice(0, questionsPerPage));
-  }, [questions]);
-
-  const filteredQuestions = visibleQuestions.filter((data) =>
+  const filteredQuestions = questions.filter((data) =>
     data.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleShowMore = () => {
-    const newVisibleQuestions = questions.slice(
-      0,
-      nextIndex + questionsPerPage
-    );
-    setVisibleQuestions(newVisibleQuestions);
-    setNextIndex(nextIndex + questionsPerPage);
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          onClick={() => handlePageClick(i)}
+          className={currentPage === i ? style.activePage : ""}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pageNumbers;
   };
 
   return (
@@ -56,13 +67,11 @@ const HomePage = () => {
           <Link to="/ask">
             <button className={style.askButton}>Ask Question</button>
           </Link>
-
           <div className={style.welcome}>
             <p>Welcome: {user?.username}</p>
           </div>
         </div>
 
-        {/* Search Bar */}
         <div className={style.searchContainer}>
           <input
             type="text"
@@ -83,13 +92,21 @@ const HomePage = () => {
           </div>
         ))}
 
-        {visibleQuestions.length < questions.length && (
-          <div style={{ textAlign: "center", marginTop: "20px" }}>
-            <button className={style.showMoreButton} onClick={handleShowMore}>
-              Show More
-            </button>
-          </div>
-        )}
+        <div className={style.pagination}>
+          <button
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </button>
+          {renderPageNumbers()}
+          <button
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
+        </div>
       </section>
     </Layout>
   );

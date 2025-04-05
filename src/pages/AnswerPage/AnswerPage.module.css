@@ -1,3 +1,4 @@
+/* AnswerPage.module.css */
 .answerPageContainer {
   max-width: 1000px;
   margin: 0 auto;
@@ -92,7 +93,6 @@
 .formError {
   color: red;
   text-align: center;
-  /* margin: 2px 0; */
   background-color: #ffdddd;
   padding: 0px 5px;
   border-radius: 5px;
@@ -110,7 +110,6 @@
   }
 }
 
-/* /// */
 .question_avatar_title {
   display: flex;
   align-items: center;
@@ -146,12 +145,12 @@
 }
 
 .voteContainer button svg {
-  color: #d78330; /* Light skin tone */
+  color: #3081d7;
   transition: color 0.3s ease;
 }
 
 .voteContainer button:hover svg {
-  color: #c68642; /* Darker skin tone on hover */
+  color: #c68642;
 }
 
 .voteContainer button:hover {
@@ -163,4 +162,33 @@
   font-size: 16px;
 }
 
-/* Other existing styles remain the same */
+/* ... other styles ... */
+
+.vote-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add transition */
+}
+
+.voted-up .vote-icon-container {
+  background-color: rgba(0, 128, 0, 0.2);
+  transform: scale(1.1); /* Slightly scale up */
+}
+
+.voted-down .vote-icon-container {
+  background-color: rgba(255, 0, 0, 0.2);
+  transform: scale(1.1); /* Slightly scale up */
+}
+
+.voted-up svg {
+  color: green;
+  transform: scale(1.2);
+}
+
+.voted-down svg {
+  color: red;
+  transform: scale(1.2);
+}

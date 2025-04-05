@@ -1,10 +1,11 @@
+// AnswerPage.jsx
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../axiosConfig";
 import styles from "./AnswerPage.module.css";
 import Layout from "../../components/Layout/Layout";
 import { IoPersonCircleOutline } from "react-icons/io5";
-import { FaThumbsUp, FaThumbsDown } from "react-icons/fa"; // Import icons
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
 function AnswerPage() {
   const { questionid } = useParams();
@@ -13,12 +14,12 @@ function AnswerPage() {
   const [newAnswer, setNewAnswer] = useState("");
   const [error, setError] = useState("");
   const token = localStorage.getItem("token");
+  const [userVotes, setUserVotes] = useState({});
 
   useEffect(() => {
     fetchQuestionAndAnswers();
   }, [questionid]);
 
-  // Fetch question and answers
   async function fetchQuestionAndAnswers() {
     try {
       const questionResponse = await axios.get(`/question/${questionid}`, {
@@ -29,12 +30,16 @@ function AnswerPage() {
       const answersResponse = await axios.get(`/answer/${questionid}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setAnswers(answersResponse.data.answer);
-      // Sorting answers by votes in descending order
       const sortedAnswers = answersResponse.data.answer.sort(
         (a, b) => b.votes - a.votes
       );
       setAnswers(sortedAnswers);
+
+      const userVotesResponse = await axios.get(
+        `/answer/userVotes/${questionid}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setUserVotes(userVotesResponse.data.votes);
     } catch (error) {
       if (error.response) {
         setError(error?.response?.data?.message);
@@ -42,7 +47,6 @@ function AnswerPage() {
     }
   }
 
-  // Handle submitting a new answer
   const handleSubmitAnswer = async (e) => {
     e.preventDefault();
     if (newAnswer.trim() === "") {
@@ -56,16 +60,14 @@ function AnswerPage() {
         { questionid: questionid, answer: newAnswer },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
       setNewAnswer("");
       setError("");
-      fetchQuestionAndAnswers(); // Refresh answers
+      fetchQuestionAndAnswers();
     } catch (err) {
       setError(err.response?.data?.message || "Failed to submit answer.");
     }
   };
 
-  // Handle upvote/downvote
   async function handleVote(answerId, type) {
     try {
       await axios.post(
@@ -73,9 +75,13 @@ function AnswerPage() {
         { answerId, voteType: type },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      fetchQuestionAndAnswers(); // Refresh answers after voting
+      fetchQuestionAndAnswers();
     } catch (error) {
-      console.error("Error voting:", error);
+      if (error.response && error.response.status === 409) {
+        setError(error.response.data.message);
+      } else {
+        console.error("Error voting:", error);
+      }
     }
   }
 
@@ -104,12 +110,32 @@ function AnswerPage() {
                 <div className={styles.title_container}>
                   <p>{answer?.content}</p>
                   <div className={styles.voteContainer}>
-                    <button onClick={() => handleVote(answer.answerid, "up")}>
-                      <FaThumbsUp size={20} />
+                    <button
+                      onClick={() => handleVote(answer.answerid, "up")}
+                      disabled={userVotes[answer.answerid] === "up"}
+                      className={
+                        userVotes[answer.answerid] === "up"
+                          ? styles["voted-up"]
+                          : ""
+                      }
+                    >
+                      <div className={styles["vote-icon-container"]}>
+                        <FaThumbsUp size={20} />
+                      </div>
                     </button>
                     <span>{answer.votes}</span>
-                    <button onClick={() => handleVote(answer.answerid, "down")}>
-                      <FaThumbsDown size={20} />
+                    <button
+                      onClick={() => handleVote(answer.answerid, "down")}
+                      disabled={userVotes[answer.answerid] === "down"}
+                      className={
+                        userVotes[answer.answerid] === "down"
+                          ? styles["voted-down"]
+                          : ""
+                      }
+                    >
+                      <div className={styles["vote-icon-container"]}>
+                        <FaThumbsDown size={20} />
+                      </div>
                     </button>
                   </div>
                 </div>
