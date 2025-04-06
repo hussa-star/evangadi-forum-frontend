@@ -94,60 +94,61 @@ function AnswerPage() {
           <p>{question?.content}</p>
         </div>
 
-        <div className={styles.answersSection}>
-          <h3>Answer From The Community</h3>
-          <hr />
-          {answers.length > 0 ? (
-            answers.map((answer) => (
-              <div
-                key={answer.answerid}
-                className={styles.question_avatar_title}
-              >
-                <div className={styles.avator_container}>
-                  <IoPersonCircleOutline size={70} />
-                  <small>{answer?.user_name}</small>
-                </div>
-                <div className={styles.title_container}>
-                  <p>{answer?.content}</p>
-                  <div className={styles.voteContainer}>
-                    <button
-                      onClick={() => handleVote(answer.answerid, "up")}
-                      disabled={userVotes[answer.answerid] === "up"}
-                      className={
-                        userVotes[answer.answerid] === "up"
-                          ? styles["voted-up"]
-                          : ""
-                      }
-                    >
-                      <div className={styles["vote-icon-container"]}>
-                        <FaThumbsUp size={20} />
-                      </div>
-                    </button>
-                    <span>{answer.votes}</span>
-                    <button
-                      onClick={() => handleVote(answer.answerid, "down")}
-                      disabled={userVotes[answer.answerid] === "down"}
-                      className={
-                        userVotes[answer.answerid] === "down"
-                          ? styles["voted-down"]
-                          : ""
-                      }
-                    >
-                      <div className={styles["vote-icon-container"]}>
-                        <FaThumbsDown size={20} />
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <span>
-              <p style={{ color: "red" }}>{error}</p>
-              <p>No answers yet. Be the first to answer!</p>
-            </span>
-          )}
+       <div className={styles.answersSection}>
+  <h3>Answer From The Community</h3>
+  <hr />
+  {answers.length > 0 ? (
+    answers.map((answer) => (
+      <article
+        key={answer.answerid}
+        className={styles.question_avatar_title}
+      >
+        <div className={styles.avator_container}>
+          <IoPersonCircleOutline size={50} />
+          <small>{answer?.user_name}</small>
         </div>
+        <div className={styles.title_container}>
+          <p>{answer?.content}</p>
+          <div className={styles.voteContainer}>
+            <button
+              onClick={() => handleVote(answer.answerid, "up")}
+              disabled={userVotes[answer.answerid] === "up"}
+              className={
+                userVotes[answer.answerid] === "up"
+                  ? styles["voted-up"]
+                  : ""
+              }
+            >
+              <div className={styles["vote-icon-container"]}>
+                <FaThumbsUp size={20} />
+              </div>
+            </button>
+            <span>{answer.votes}</span>
+            <button
+              onClick={() => handleVote(answer.answerid, "down")}
+              disabled={userVotes[answer.answerid] === "down"}
+              className={
+                userVotes[answer.answerid] === "down"
+                  ? styles["voted-down"]
+                  : ""
+              }
+            >
+              <div className={styles["vote-icon-container"]}>
+                <FaThumbsDown size={20} />
+              </div>
+            </button>
+          </div>
+        </div>
+      </article>
+    ))
+  ) : (
+    <span>
+      <p style={{ color: "red" }}>{error}</p>
+      <p>No answers yet. Be the first to answer!</p>
+    </span>
+  )}
+</div>
+
 
         <form onSubmit={handleSubmitAnswer} className={styles.answerForm}>
           <h3>Post Answer</h3>

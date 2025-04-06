@@ -1,9 +1,8 @@
-
 .header {
-position: sticky;
+  position: sticky;
   top: 0;
   width: 100%;
-  z-index: 1000000; 
+  z-index: 1000000;
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -14,17 +13,15 @@ position: sticky;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.375);
   flex-wrap: wrap;
   background-color: white;
-
 }
 
 .header img {
   width: auto;
 }
-.home{
+.home {
   display: flex;
   gap: 1.5rem;
   align-items: center;
-
 }
 .navbar {
   display: flex;
@@ -53,9 +50,9 @@ position: sticky;
   opacity: 0.9;
 }
 
-.navbar ul li:hover, 
+.navbar ul li:hover,
 .navbar ul a:hover {
-  color: #FF8500;
+  color: #ff8500;
   cursor: pointer;
 }
 
@@ -71,64 +68,58 @@ position: sticky;
 }
 
 .navbar .btn:hover {
-  background-color: #FF8500;
+  background-color: #ff8500;
   color: white;
 }
 
-@media (max-width: 768px) {
-
-  .header {
-    flex-direction: row; 
-    justify-content: space-between;
-    text-align: left;
-  }
-
-
-  .navbar .home {
-    display: none;
-  }
-
-  
-  .header img {
-    width: auto;
-    height: 50%;
-    width: 80%;
-  }
-
-  .navbar .btn {
-    background-color: #1141df;
-    color: white;
-    border: none;
-    padding: 14px 40px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 100;
-  }
-
-  .navbar .btn:hover {
-    background-color: #FF8500;
-  }
-  .btn{
-    display: block;
-  }
+/* Hamburger icon */
+.menuIcon {
+  display: none;
+  cursor: pointer;
+  color: #1141df;
 }
 
-@media (max-width: 480px) {
-  .header  {
-    padding: 10px;
-    margin-left: -20px;
-    justify-content: center;
-    /* height: 4vh; */
+/* Active navbar when menu is open */
+.navActive {
+  display: flex !important;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .menuIcon {
+    display: block;
   }
- .header img {
-    margin-left: -15px;
+
+  .navbar {
+    display: none;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
- 
+
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar ul li,
+  .navbar ul a,
+  .home {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
 
   .navbar .btn {
-    padding: 10px 30px;
-    display: block;
-    margin-left: -20px;
-    
+    width: 90%;
+    margin: 10px auto;
+    padding: 12px 0;
   }
 }

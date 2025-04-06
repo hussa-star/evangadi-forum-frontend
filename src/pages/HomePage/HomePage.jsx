@@ -1,4 +1,3 @@
-// HomePage.jsx
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import style from "./homePage.module.css";
@@ -40,24 +39,20 @@ const HomePage = () => {
     data.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   const renderPageNumbers = () => {
-    const pageNumbers = [];
+    const pages = [];
     for (let i = 1; i <= totalPages; i++) {
-      pageNumbers.push(
+      pages.push(
         <button
           key={i}
-          onClick={() => handlePageClick(i)}
+          onClick={() => setCurrentPage(i)}
           className={currentPage === i ? style.activePage : ""}
         >
           {i}
         </button>
       );
     }
-    return pageNumbers;
+    return pages;
   };
 
   return (
@@ -99,7 +94,9 @@ const HomePage = () => {
           >
             Previous
           </button>
+
           {renderPageNumbers()}
+
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             disabled={currentPage === totalPages}

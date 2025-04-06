@@ -1,10 +1,12 @@
-
-.question_container{
+.question_container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  overflow-x: hidden;
 }
-.question_line{
+
+.question_line {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,69 +14,68 @@
   padding: 10px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s ease;
-     
-  
-}
-.question_line:hover{
-background-color:#f0f0f0;
+  flex-wrap: wrap;
 }
 
+.question_line:hover {
+  background-color: #f0f0f0;
+}
 
-.question_title{
+.question_title {
   font-size: 23px;
   color: #104175;
-}
-.qn_title  :hover {
-  animation: slideIcon 0.4s ease-in-out;  
+  word-break: break-word;
+  display: block;
 }
 
-.qn_title{
-  flex-grow:1;
+.qn_title :hover {
+  animation: slideIcon 0.4s ease-in-out;
+}
+
+.qn_title {
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  
   gap: 40px;
-  
-
+  flex-wrap: wrap;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
-
-.user{
+.user {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center;padding-top: 5px;
+  align-items: center;
+  padding-top: 5px;
   text-align: center;
   width: 80px;
   min-width: 80px;
- 
 }
 
 .user svg {
   border-radius: 50%;
   transition: background-color 0.4s ease;
-  
 }
 
-.question_line:hover .user svg  {
+.question_line:hover .user svg {
   background-color: #d1d1d1;
 }
 
-.expand_icon{
+.expand_icon {
   margin-left: auto;
   display: flex;
   font-size: 20px;
-color: #555;
-cursor: pointer;
-transition: transform 0.4s ease-in-out;
-
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.4s ease-in-out;
 }
 
 .question_line:hover .expand_icon {
   transform: translateX(-10px);
 }
 
-.question_container svg{
+.question_container svg {
   cursor: pointer;
   color: #012456;
 }
@@ -84,4 +85,58 @@ transition: transform 0.4s ease-in-out;
   color: #888;
   margin-top: 5px;
   font-style: italic;
+}
+
+/* =============================== */
+/* 📱 Responsive Styles for Mobile */
+/* =============================== */
+
+@media screen and (max-width: 768px) {
+  .qn_title {
+    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .question_title {
+    font-size: 18px;
+    line-height: 1.3;
+  }
+
+  .user {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+  }
+
+  .user svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .expand_icon {
+    font-size: 16px;
+    align-self: flex-end;
+  }
+
+  .timeAgo {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .question_title {
+    font-size: 16px;
+  }
+
+  .expand_icon {
+    font-size: 14px;
+  }
+
+  .timeAgo {
+    font-size: 12px;
+  }
 }
