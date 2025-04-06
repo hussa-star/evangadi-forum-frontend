@@ -14,11 +14,29 @@
   padding: 10px;
   border-bottom: 1px solid #ddd;
   transition: background-color 0.3s ease;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .question_line:hover {
   background-color: #f0f0f0;
+}
+
+.qn_title {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.title_time_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .question_title {
@@ -30,16 +48,6 @@
 
 .qn_title :hover {
   animation: slideIcon 0.4s ease-in-out;
-}
-
-.qn_title {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
-  min-width: 0;
-  overflow-wrap: break-word;
 }
 
 .user {
@@ -63,12 +71,14 @@
 }
 
 .expand_icon {
-  margin-left: auto;
+  margin-left: 10px;
   display: flex;
   font-size: 20px;
   color: #555;
   cursor: pointer;
   transition: transform 0.4s ease-in-out;
+  align-self: center;
+  flex-shrink: 0;
 }
 
 .question_line:hover .expand_icon {
